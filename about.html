@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - V3D4NT</title>
+    <style>
+        /* Reset & Core Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Lighter background as requested */
+            --bg-dark: #161616; 
+            /* Warmer off-white (Ivory) */
+            --text-warm: #fdf5e6; 
+            --text-muted: #94a3b8;
+            --accent-blue: #38bdf8;
+            --nav-height: 80px;
+        }
+
+        body {
+            background-color: var(--bg-dark); 
+            font-family: "Georgia", "Times New Roman", serif;
+            color: var(--text-warm);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Navigation - Home Page Style */
+        header {
+            height: var(--nav-height);
+            background: rgba(22, 22, 22, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            opacity: 0;
+            animation: fadeInDown 0.8s ease forwards;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-warm);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-blue);
+        }
+
+        /* Main Content - Centered Layout */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .content-container {
+            max-width: 850px;
+            width: 100%;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .about-text {
+            /* Using the size/weight from the code you liked */
+            font-size: 15.5px; 
+            font-weight: 600; 
+            line-height: 1.5;
+            letter-spacing: 0.01em;
+            text-align: left;
+        }
+
+        .line {
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .about-text {
+                font-size: 14px;
+                line-height: 1.6;
+            }
+            .line {
+                display: inline; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">V3D4NT</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Blogs</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="content-container">
+            <div class="about-text"> 
+                <span class="line">To visit Planet Earth you will have to be born as a human child.</span>
+                <span class="line">At first, you will have to learn to use your new body, to move your arms and legs, to pull yourself upright.</span>
+                <span class="line">You will learn to walk and run, to use your hands, to make sounds, and form words. Slowly, you will learn to take care of</span>
+                <span class="line">yourself. Here, it is still and peaceful, but there, the colors, sensations, and sounds will wash over you constantly.</span>
+                <span class="line">You will see so many living things, plants, and animals, beyond imagining.</span>
+                <span class="line">Here, it is always the same, but there, everything is in motion, everything is always changing.</span>
+                <span class="line">You will be plunged into Earth’s river of time, there will be so much for you to learn, and so much for you to feel, pleasure </span>
+                <span class="line">and fear, joy and disappointment, sadness and wonder.</span>
+                <span class="line">In your confusion and delight, you will forget where you came from. You will grow up, travel, and work.</span>
+                <span class="line">Perhaps you’ll have children even grandchildren of your own.</span>
+                <span class="line">Over the years, you will try to make sense of that happy, sad, full, empty always-shifting life you’re in.</span>
+                <span class="line">And when the time comes to return to your star, it may be hard to say goodbye to that strangely beautiful world.</span>
+                <br>                                    </br>
+                <span class="line">~ Claire A. Nivola</span>
+            </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
