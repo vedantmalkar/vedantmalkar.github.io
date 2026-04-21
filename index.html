@@ -117,6 +117,60 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .ripple {
+    position: absolute;
+    left: 50%;
+    top: 58%;
+    width: 10px;
+    height: 10px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    animation: ripple 0.7s ease-out forwards;
+  }
+  @keyframes ripple {
+    to {
+      width: 180px;
+      height: 180px;
+      opacity: 0;
+      border-width: 1px;
+    }
+  }
+
+  .bubble {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 0.25rem);
+    transform: translateX(-50%);
+    background: var(--text);
+    color: var(--bg);
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 0.7rem;
+    padding: 0.3rem 0.55rem;
+    border-radius: 6px;
+    white-space: nowrap;
+    pointer-events: none;
+    animation: bubble-pop 2.2s ease forwards;
+  }
+  .bubble::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--text);
+  }
+  @keyframes bubble-pop {
+    0%   { opacity: 0; transform: translateX(-50%) translateY(4px); }
+    15%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+    85%  { opacity: 1; }
+    100% { opacity: 0; }
   }
   .pixel img {
     width: 100%;
@@ -225,7 +279,7 @@
       <h1>Vedant Malkar</h1>
       <p class="tagline">wassup! i'm a <span class="name-hover">19 year old</span> currently in <span class="hover-below">college</span>, exploring robotics and low-level embedded, having fun building and messing about.</p>
     </div>
-    <div class="pixel">
+    <div class="pixel" id="totodile">
       <img src="totodile.gif" alt="totodile">
     </div>
   </div>
@@ -316,6 +370,27 @@
 </a>
 
 <script>
+  (() => {
+    const toto = document.getElementById('totodile');
+    if (!toto) return;
+    const messages = ['wassup!', '!!'];
+    let clicks = 0;
+    toto.addEventListener('click', () => {
+      clicks++;
+      const r = document.createElement('span');
+      r.className = 'ripple';
+      toto.appendChild(r);
+      setTimeout(() => r.remove(), 800);
+      if (clicks % 5 === 0) {
+        const b = document.createElement('span');
+        b.className = 'bubble';
+        b.textContent = messages[Math.min(Math.floor(clicks / 5) - 1, messages.length - 1)];
+        toto.appendChild(b);
+        setTimeout(() => b.remove(), 2300);
+      }
+    });
+  })();
+
   const tickClock = () => {
     const fmt = new Intl.DateTimeFormat('en-GB', {
       timeZone: 'Asia/Kolkata',
