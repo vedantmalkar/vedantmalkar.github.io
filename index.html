@@ -190,6 +190,26 @@
     filter: invert(0.88);
   }
 
+  .clock {
+    position: fixed;
+    top: 1.25rem;
+    right: 1.5rem;
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    z-index: 10;
+  }
+
+  .repo-meta {
+    margin-left: 0.75rem;
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    font-weight: normal;
+  }
+
   @media (max-width: 520px) {
     .intro { flex-direction: column-reverse; align-items: flex-start; }
     .pixel { width: 96px; height: 96px; }
@@ -236,7 +256,10 @@
       <li>
         <span class="year">2026</span>
         <span>
-          <span class="item-title"><a href="https://github.com/vedantmalkar/AstraRTOS">AstraRTOS</a></span>
+          <span class="item-title">
+            <a href="https://github.com/vedantmalkar/AstraRTOS">AstraRTOS</a>
+            <span class="repo-meta" id="astra-inline"></span>
+          </span>
           <span class="item-desc">A minimal real-time operating system kernel written from scratch in C.</span>
         </span>
       </li>
@@ -286,11 +309,44 @@
 
 </main>
 
+<div class="clock" id="clock"></div>
+
 <a href="https://sravjti.in/webring/" class="webring-badge" title="part of the SRA webring">
   <img src="https://sravjti.in/webring/khopdi.svg" alt="SRA webring">
 </a>
 
 <script>
+  const tickClock = () => {
+    const fmt = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Asia/Kolkata',
+      hour: '2-digit', minute: '2-digit', hour12: false,
+    });
+    document.getElementById('clock').textContent = fmt.format(new Date()) + ' · mumbai';
+  };
+  tickClock();
+  setInterval(tickClock, 30000);
+
+  (async () => {
+    const inline = document.getElementById('astra-inline');
+    if (!inline) return;
+    try {
+      const r = await fetch('https://api.github.com/repos/vedantmalkar/AstraRTOS');
+      if (!r.ok) throw 0;
+      const d = await r.json();
+      const ago = (iso) => {
+        const s = Math.max(1, Math.floor((Date.now() - new Date(iso)) / 1000));
+        const units = [[60,'s'],[60,'m'],[24,'h'],[30,'d'],[12,'mo'],[Infinity,'y']];
+        let n = s, label = 's';
+        for (const [div, u] of units) {
+          if (n < div) { label = u; break; }
+          n = Math.floor(n / div); label = u;
+        }
+        return `${n}${label}`;
+      };
+      inline.textContent = `${d.stargazers_count} ★ · last pushed ${ago(d.pushed_at)} ago`;
+    } catch { /* silently skip */ }
+  })();
+
   (async () => {
     const list = document.getElementById('writings-list');
     const api = 'https://api.github.com/repos/vedantmalkar/AstraRTOS/contents/docs/blogs';
