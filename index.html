@@ -1,325 +1,316 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>V3D4NT</title>
-  <style>
-    /* Reset & Core Variables */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vedant Malkar</title>
+<style>
+  :root {
+    --bg:     #1e1b17;
+    --text:   #ebe6d9;
+    --muted:  #928974;
+    --accent: #d17a6e;
+    --rule:   #2d2822;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); }
+  html { zoom: 1.2; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 17px;
+    line-height: 1.7;
+    min-height: 100vh;
+    padding: 4rem 1.5rem 6rem;
+  }
+  main {
+    max-width: 640px;
+    margin: 0 auto;
+  }
 
-    :root {
-      --bg-dark: #0f172a;
-      --bg-card: #1e293b;
-      --text-main: #f1f5f9;
-      --text-muted: #94a3b8;
-      --accent-blue: #38bdf8;
-      --accent-pink: #ec4899;
-      --nav-height: 80px;
-    }
+  .intro {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+  }
+  .intro-text { flex: 1; }
+  .intro h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0 0 0.35rem 0;
+    letter-spacing: -0.01em;
+  }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg-dark);
-      color: var(--text-main);
-      line-height: 1.6;
-      overflow-x: hidden;
-      zoom: 0.9;
-    }
+  .name-hover {
+    position: relative;
+    cursor: help;
+  }
+  .name-hover::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: calc(100% + 0.5rem);
+    width: 90px;
+    height: 115px;
+    background-image: url('vedant_young.jpg');
+    background-size: cover;
+    background-position: center;
+    border: 3px solid #f5efd9;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    transform: rotate(-3deg) scale(0.95);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 20;
+  }
+  .name-hover:hover::after {
+    opacity: 1;
+    transform: rotate(-3deg) scale(1);
+  }
 
-    /* Navigation */
-    header {
-      height: var(--nav-height);
-      background: rgba(15, 23, 42, 0.9);
-      backdrop-filter: blur(10px);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      opacity: 0;
-      animation: fadeInDown 0.8s ease forwards;
-    }
+  .hover-below {
+    position: relative;
+    cursor: help;
+  }
+  .hover-below::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: calc(100% + 0.5rem);
+    width: 140px;
+    height: 100px;
+    background-image: url('vjti.webp');
+    background-size: cover;
+    background-position: center;
+    border: 3px solid #f5efd9;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    transform: rotate(2deg) scale(0.95);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 20;
+  }
+  .hover-below:hover::after {
+    opacity: 1;
+    transform: rotate(2deg) scale(1);
+  }
+  .tagline {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin: 0;
+  }
 
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+  .pixel {
+    width: 140px;
+    height: 140px;
+    flex-shrink: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pixel img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+    -webkit-mask-image: radial-gradient(ellipse at center, black 55%, transparent 90%);
+            mask-image: radial-gradient(ellipse at center, black 55%, transparent 90%);
+  }
 
-    nav {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      height: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+  hr {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 2.5rem 0;
+  }
 
-    .logo {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--text-main);
-      text-decoration: none;
-      letter-spacing: -0.02em;
-    }
+  h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: ui-monospace, Menlo, monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    margin: 0 0 1.25rem 0;
+  }
 
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 2.5rem;
-    }
+  p { margin: 0 0 1.2rem 0; }
 
-    .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: color 0.2s ease;
-    }
+  ul { list-style: none; padding: 0; margin: 0; }
+  li {
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  li:last-child { border-bottom: none; }
+  .year {
+    width: 3.5rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    padding-top: 0.15rem;
+    flex-shrink: 0;
+  }
+  .item-title { display: block; }
+  .item-desc { color: var(--muted); font-size: 0.95rem; }
 
-    .nav-links a:hover {
-      color: var(--accent-blue);
-    }
+  a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+  a:hover { text-decoration-thickness: 2px; }
 
-    /* Hero Section with Vanta Background */
-    .hero-section {
-      position: relative;
-      min-height: 75vh;
-      display: flex;
-      align-items: center;
-      padding: 4rem 2rem;
-      overflow: hidden;
-    }
+  .elsewhere a { margin-right: 1rem; }
 
-    /* Vanta.js container - fills the entire hero section */
-    #vanta-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      opacity: 0;
-      animation: fadeIn 1.5s ease 0.3s forwards;
-    }
+  .webring-badge {
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    display: inline-flex;
+    text-decoration: none;
+    opacity: 0.35;
+    transition: opacity 0.2s;
+    z-index: 10;
+  }
+  .webring-badge:hover { opacity: 1; }
+  .webring-badge img {
+    width: 36px;
+    height: 36px;
+    filter: invert(0.88);
+  }
 
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-
-    .hero-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-      position: relative;
-      z-index: 10;
-    }
-
-    .hero-content h1 {
-      font-size: clamp(2.5rem, 8vw, 4.5rem);
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-      max-width: 800px;
-      font-weight: 800;
-    }
-
-    .hero-subtitle {
-      font-size: 1.25rem;
-      color: var(--text-muted);
-      max-width: 600px;
-      margin-bottom: 2rem;
-    }
-
-    /* Animated text elements */
-    .animate-text {
-      opacity: 0;
-      animation: fadeInUp 0.8s ease forwards;
-    }
-
-    .animate-text:nth-child(1) {
-      animation-delay: 0.8s;
-    }
-
-    .animate-text:nth-child(2) {
-      animation-delay: 1.2s;
-    }
-
-    .animate-text:nth-child(3) {
-      animation-delay: 1.6s;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Main Content Layout */
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 4rem 2rem;
-      position: relative;
-      z-index: 5;
-      background: var(--bg-dark);
-      opacity: 0;
-      animation: fadeIn 0.8s ease 1s forwards;
-    }
-
-    /* Articles */
-    .section-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--accent-pink);
-      font-weight: 700;
-      margin-bottom: 2rem;
-      display: block;
-    }
-
-    .article-list {
-      display: flex;
-      flex-direction: column;
-      gap: 4rem;
-    }
-
-    .article-item {
-      padding: 1.5rem;
-      margin: -1.5rem;
-      border-radius: 12px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    .article-item:hover {
-      background: rgba(255, 255, 255, 0.03);
-      transform: translateX(8px);
-    }
-
-    .article-item h2 {
-      font-size: 1.75rem;
-      margin-bottom: 0.5rem;
-      transition: color 0.2s ease;
-    }
-
-    .article-item:hover h2 {
-      color: var(--accent-blue);
-    }
-
-    .article-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .article-excerpt {
-      color: var(--text-muted);
-      font-size: 1.05rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .tag {
-      padding: 0.3rem 0.7rem;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 6px;
-      color: var(--text-muted);
-      font-size: 0.8rem;
-    }
-
-    .read-link {
-      color: var(--accent-blue);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .hero-section { padding-top: 2rem; }
-    }
-  </style>
+  @media (max-width: 520px) {
+    .intro { flex-direction: column-reverse; align-items: flex-start; }
+    .pixel { width: 96px; height: 96px; }
+  }
+</style>
 </head>
 <body>
 
-  <header>
-    <nav>
-      <a href="#" class="logo">V3D4NT</a>
-      <ul class="nav-links">
-        <li><a href="#">Blogs</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="about.html">About</a></li>
-      </ul>
-    </nav>
-  </header>
+<main>
 
-  <section class="hero-section">
-    <!-- Vanta.js globe background -->
-    <div id="vanta-bg"></div>
-    
-    <div class="hero-content">
-      <p class="section-label animate-text" style="color: var(--accent-pink)">Hello, I'm</p>
-      <h1 class="animate-text">Vedant Malkar</h1>
-      <p class="hero-subtitle animate-text">An Electronics and Telecommunication engineer currently exploring robotics, controls and a sprinkle of embedded. I love learning, reading and figuring things out. </p>
+  <div class="intro">
+    <div class="intro-text">
+      <h1>Vedant Malkar</h1>
+      <p class="tagline">wassup! i'm a <span class="name-hover">19 year old</span> currently in <span class="hover-below">college</span>, exploring robotics and low-level embedded, having fun building and messing about.</p>
     </div>
+    <div class="pixel">
+      <img src="totodile.gif" alt="totodile">
+    </div>
+  </div>
+
+  <p>
+    most of my time goes into hardware side projects and reading about how
+    operating systems actually work under the hood. i had a lot of fun
+    contributing to <a href="https://github.com/zephyrproject-rtos/zephyr">Zephyr</a>
+    upstream, and somewhere in the middle of it got inspired to write my own
+    RTOS from scratch, which turned into
+    <a href="https://github.com/vedantmalkar/AstraRTOS">AstraRTOS</a>.
+    i also tinker with UWB indoor localization and a bit of ROS on the side. i like reading,
+    figuring things out, and writing about what i learn.
+  </p>
+
+  <p><strong>currently</strong></p>
+  <ul style="list-style: disc; padding-left: 1.5rem; margin-top: -0.5rem;">
+    <li>writing a small RTOS kernel from scratch in C</li>
+    <li>UWB-based indoor localization on Zephyr</li>
+    <li>learning bare metal C and Cortex-M internals</li>
+  </ul>
+
+  <hr>
+
+  <section>
+    <h2>Projects</h2>
+    <ul>
+      <li>
+        <span class="year">2026</span>
+        <span>
+          <span class="item-title"><a href="https://github.com/vedantmalkar/AstraRTOS">AstraRTOS</a></span>
+          <span class="item-desc">A minimal real-time operating system kernel written from scratch in C.</span>
+        </span>
+      </li>
+      <li>
+        <span class="year">2026</span>
+        <span>
+          <span class="item-title"><a href="https://github.com/vedantmalkar/zephyr-dw3001cdk-tdoa">UWB TDOA on Zephyr</a></span>
+          <span class="item-desc">Custom Zephyr firmware for Qorvo's DW3001CDK implementing TDOA ranging for indoor localization.</span>
+        </span>
+      </li>
+      <li>
+        <span class="year">2025</span>
+        <span>
+          <span class="item-title"><a href="https://github.com/vedantmalkar/Ballerina-Cappucina">Ballerina Cappucina</a></span>
+          <span class="item-desc">Omnidirectional robot that detects and collects coloured balls around a room. ROS, OpenCV, ESP32.</span>
+        </span>
+      </li>
+      <li>
+        <span class="year">2025</span>
+        <span>
+          <span class="item-title"><a href="https://github.com/vedantmalkar/VisiLoc">VisiLoc</a></span>
+          <span class="item-desc">Camera-based indoor localization using ArUco markers. Estimates position and orientation without GPS.</span>
+        </span>
+      </li>
+    </ul>
   </section>
 
-  <main>
-    <section>
-      <span class="section-label">Writing</span>
-      <div class="article-list">
-        
-        <article class="article-item">
-          <h2>Localization using UWBs</h2>
-          <p class="article-excerpt">Exploring Ultra-Wideband technology for precise indoor positioning and why TDOA is revolutionizing real-time localization systems.</p>
-        </article>
+  <hr>
 
-      </div>
-    </section>
-  </main>
+  <section>
+    <h2>Writings</h2>
+    <ul id="writings-list">
+      <li><span class="item-desc">loading&hellip;</span></li>
+    </ul>
+  </section>
 
-  <footer style="padding: 4rem 2rem; border-top: 1px solid rgba(255, 255, 255, 0.05); text-align: center; color: var(--text-muted); font-size: 0.9rem;">
-    <p>&copy; V3D4NT</p>
-  </footer>
+  <hr>
 
-  <!-- Load Three.js and Vanta.js GLOBE from CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
-  
-  <script>
-    // Initialize Vanta.js GLOBE effect
-    VANTA.GLOBE({
-      el: "#vanta-bg",
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200.00,
-      minWidth: 200.00,
-      scale: 1.00,
-      scaleMobile: 1.00,
-      color: 0xec4899,
-      backgroundColor: 0x0f172a
-    });
-  </script>
+  <section class="elsewhere">
+    <h2>Elsewhere</h2>
+    <p>
+      <a href="https://github.com/vedantmalkar">github</a>
+      <a href="https://www.linkedin.com/in/vedant-malkar-5238683b5/">linkedin</a>
+      <a href="mailto:vedantitsme@gmail.com">email</a>
+    </p>
+  </section>
+
+</main>
+
+<a href="https://sravjti.in/webring/" class="webring-badge" title="part of the SRA webring">
+  <img src="https://sravjti.in/webring/khopdi.svg" alt="SRA webring">
+</a>
+
+<script>
+  (async () => {
+    const list = document.getElementById('writings-list');
+    const api = 'https://api.github.com/repos/vedantmalkar/AstraRTOS/contents/docs/blogs';
+    try {
+      const res = await fetch(api);
+      if (!res.ok) throw new Error('api');
+      const files = (await res.json())
+        .filter(f => f.name.endsWith('.md'))
+        .sort((a, b) => b.name.localeCompare(a.name));
+      if (!files.length) { list.innerHTML = '<li><span class="item-desc">nothing yet.</span></li>'; return; }
+      list.innerHTML = files.map(f => {
+        const title = f.name
+          .replace(/\.md$/, '')
+          .replace(/[-_]/g, ' ')
+          .replace(/\b\w/g, c => c.toUpperCase());
+        return `<li>
+          <span class="year">astra</span>
+          <span><span class="item-title"><a href="${f.html_url}">${title}</a></span></span>
+        </li>`;
+      }).join('');
+    } catch (e) {
+      list.innerHTML = `<li>
+        <span class="year">astra</span>
+        <span><span class="item-title"><a href="https://github.com/vedantmalkar/AstraRTOS/tree/main/docs/blogs">see all on github</a></span></span>
+      </li>`;
+    }
+  })();
+</script>
 
 </body>
 </html>
