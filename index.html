@@ -56,6 +56,8 @@
   main {
     max-width: 640px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
   }
 
   .intro {
@@ -295,6 +297,30 @@
     font-weight: normal;
   }
 
+  .dust {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .dust span {
+    position: absolute;
+    bottom: -10px;
+    width: 2px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 50%;
+    opacity: 0;
+    animation: drift linear infinite;
+  }
+  @keyframes drift {
+    0%   { transform: translate(0, 0); opacity: 0; }
+    10%  { opacity: 0.18; }
+    90%  { opacity: 0.18; }
+    100% { transform: translate(var(--dx, 20px), -110vh); opacity: 0; }
+  }
+
   @media (max-width: 520px) {
     .intro { flex-direction: column-reverse; align-items: flex-start; }
     .pixel { width: 96px; height: 96px; }
@@ -304,6 +330,29 @@
 </style>
 </head>
 <body>
+
+<div class="dust" aria-hidden="true">
+  <span style="left:5%;  --dx: 30px;  animation-duration: 55s; animation-delay: -3s;"></span>
+  <span style="left:12%; --dx: -20px; animation-duration: 70s; animation-delay: -25s;"></span>
+  <span style="left:18%; --dx: 40px;  animation-duration: 48s; animation-delay: -10s;"></span>
+  <span style="left:24%; --dx: -15px; animation-duration: 62s; animation-delay: -40s;"></span>
+  <span style="left:31%; --dx: 25px;  animation-duration: 75s; animation-delay: -8s;"></span>
+  <span style="left:37%; --dx: -35px; animation-duration: 52s; animation-delay: -30s;"></span>
+  <span style="left:44%; --dx: 18px;  animation-duration: 68s; animation-delay: -15s;"></span>
+  <span style="left:50%; --dx: -25px; animation-duration: 58s; animation-delay: -45s;"></span>
+  <span style="left:56%; --dx: 32px;  animation-duration: 72s; animation-delay: -20s;"></span>
+  <span style="left:63%; --dx: -18px; animation-duration: 50s; animation-delay: -5s;"></span>
+  <span style="left:69%; --dx: 22px;  animation-duration: 65s; animation-delay: -35s;"></span>
+  <span style="left:75%; --dx: -30px; animation-duration: 55s; animation-delay: -12s;"></span>
+  <span style="left:82%; --dx: 15px;  animation-duration: 78s; animation-delay: -50s;"></span>
+  <span style="left:88%; --dx: -22px; animation-duration: 60s; animation-delay: -18s;"></span>
+  <span style="left:94%; --dx: 28px;  animation-duration: 53s; animation-delay: -28s;"></span>
+  <span style="left:8%;  --dx: -12px; animation-duration: 80s; animation-delay: -60s;"></span>
+  <span style="left:42%; --dx: 35px;  animation-duration: 67s; animation-delay: -22s;"></span>
+  <span style="left:60%; --dx: -28px; animation-duration: 73s; animation-delay: -38s;"></span>
+  <span style="left:78%; --dx: 20px;  animation-duration: 56s; animation-delay: -7s;"></span>
+  <span style="left:28%; --dx: -18px; animation-duration: 64s; animation-delay: -42s;"></span>
+</div>
 
 <main>
 
@@ -391,7 +440,6 @@
       <a href="https://github.com/vedantmalkar">github</a>
       <a href="https://www.linkedin.com/in/vedant-malkar-5238683b5/">linkedin</a>
       <a href="mailto:vedantitsme@gmail.com">email</a>
-      <a href="https://open.spotify.com/playlist/6DSbTRn4Yd2ZMkPXTloQMr?si=cW4mxSv5SmyqHMwQoPFxWA">spotify</a>
     </p>
   </section>
 
